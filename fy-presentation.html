@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBand | Final Defense v2.0</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --emergency-red: #d32f2f;
+            --dark-bg: #0d0f11;
+            --card-bg: #161a1d;
+            --text-main: #ffffff;
+            --accent-blue: #42a5f5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Slide Frame */
+        .slide-container {
+            width: 95vw;
+            height: 90vh;
+            background: var(--card-bg);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 1px solid #2c3236;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Slide Content Area */
+        .slide {
+            display: none;
+            padding: 40px 80px;
+            flex-grow: 1;
+            overflow-y: auto; /* Internal Scroll for long text */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active { display: block; }
+
+        /* Typography */
+        h1 { font-size: 3.5rem; color: var(--emergency-red); margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; color: var(--emergency-red); border-left: 6px solid var(--emergency-red); padding-left: 20px; margin-bottom: 25px; }
+        h3 { color: var(--accent-blue); font-size: 1.4rem; margin-top: 25px; }
+        p { font-size: 1.15rem; line-height: 1.7; color: #ccc; }
+
+        .highlight-box { background: rgba(211, 47, 47, 0.1); border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #444; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: flex-start; gap: 12px; color: #bbb; }
+        li i { color: var(--emergency-red); margin-top: 5px; }
+
+        /* Navigation Controls */
+        .controls {
+            height: 80px;
+            background: #0a0c0e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-top: 1px solid #222;
+        }
+
+        .nav-btn {
+            background: var(--emergency-red);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+        .slide-number { color: #555; font-weight: bold; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Scrollbar Styling */
+        .slide::-webkit-scrollbar { width: 8px; }
+        .slide::-webkit-scrollbar-track { background: #0a0c0e; }
+        .slide::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        
+        <div class="slide active">
+            <div style="text-align: center; margin-top: 10vh;">
+                <h1>SAFEBAND</h1>
+                <p style="font-size: 1.6rem; color: #fff;">Mobile-Based Personal Safety and Emergency Alert System</p>
+                <div class="highlight-box" style="display: inline-block; padding: 30px 60px;">
+                    <p style="margin: 0; color: #fff;"><strong>Presented by:</strong><br>Akande, F.N. | Hamzat, R.A. | Idowu, T.S.</p>
+                </div>
+                <p style="margin-top: 40px; color: #888;">Supervisor: <strong>Prof. Adetunji</strong></p>
+                <p style="font-size: 0.9rem; color: #555;">DEPARTMENT OF COMPUTER SCIENCE<br>LAUTECH, OGBOMOSO</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>The Security Context</h2>
+            <p>Nigeria's contemporary security landscape has undergone a distressing transformation, evolving from localized criminal activities into a complex crisis[cite: 45]. In recent years, life-threatening situations including kidnapping and violent assault have reached levels constituting a national emergency[cite: 46].</p>
+            <div class="grid">
+                <div class="highlight-box">
+                    <h3>Documented Crisis</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-skull"></i> 3,012 kidnappings documented between Jan 2024 and April 2025[cite: 47].</li>
+                        <li><i class="fa-solid fa-map-location-dot"></i> Southwest states, particularly Oyo, are increasingly under threat[cite: 48, 49].</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h3>The Local Impact</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-user-shield"></i> Tragic abductions in Ogbomoso's Abaa area[cite: 50].</li>
+                        <li><i class="fa-solid fa-naira-sign"></i> Estimated N2.23 trillion extracted in ransoms annually[cite: 51].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Why Traditional Systems Fail</h2>
+            <p>The fundamental problem is the critical lack of a rapid, reliable, and accessible digital mechanism for alerting responders during crises[cite: 62].</p>
+            <div class="grid">
+                <div>
+                    <h3>Communication Gaps [cite: 64]</h3>
+                    <p>Traditional phone calls are often impossible during active threats where a victim cannot speak or is in an area with unstable cellular signals.</p>
+                </div>
+                <div>
+                    <h3>The Information Gap [cite: 66]</h3>
+                    <p>Responders frequently rely on vague verbal descriptions, leading to uncoordinated rescue efforts and high error rates[cite: 67, 126].</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>The Resilience Gap [cite: 68]</h3>
+                <p>Standard web tools fail when connectivity is lost. In Ogbomoso transit routes, the inability to cache and sync data can lead to total loss of life-saving information[cite: 69].</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Methodology: OOAD Framework</h2>
+            <p>This study adopts the <strong>Object-Oriented Analysis and Design (OOAD)</strong> methodology. By modeling the ecosystem as interacting objects, we ensure each distress signal is a unique, trackable entity.</p>
+            <div class="highlight-box">
+                <h3>Core Theoretical Framework [cite: 104]</h3>
+                <ul>
+                    <li><i class="fa-solid fa-bolt"></i> <strong>Event-Driven Architecture (EDA):</strong> Treats state changes as events, pushing location updates with millisecond latency[cite: 105].</li>
+                    <li><i class="fa-solid fa-cloud-sun"></i> <strong>Offline-First Theory:</strong> Using Service Workers to intercept requests and cache content for unstable networks[cite: 106].</li>
+                    <li><i class="fa-solid fa-fingerprint"></i> <strong>Human-Centered Design:</strong> Focuses on "Panic-Proof" models to reduce cognitive load.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Technical Implementation</h2>
+            <div class="grid">
+                <div class="highlight-box">
+                    <h3>Frontend (PWA) [cite: 88]</h3>
+                    <p>Built with <strong>Next.js and TailwindCSS</strong>. We chose PWA architecture to solve the "Technological Inaccessibility" problem—no app store required, low data usage, and offline resilience[cite: 58, 59].</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Backend (Real-Time) [cite: 89]</h3>
+                    <p>Utilizing <strong>Node.js and Socket.io</strong> for bi-directional distress signals. Socket.io ensures signal transmission even in restrictive network environments[cite: 117].</p>
+                </div>
+            </div>
+            <div class="highlight-box" style="margin-top: 10px;">
+                <h3>Persistence & Data [cite: 90]</h3>
+                <p><strong>PostgreSQL </strong> for reliable geospatial logging and forensic incident history[cite: 177, 190].</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>SafeBand Implementation</h2>
+            <div class="grid">
+                <div class="highlight-box">
+                    <h3>Victim Features [cite: 132]</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-hand-pointer"></i> <strong>One-Touch SOS:</strong> Instant activation for high-stress scenarios[cite: 133].</li>
+                        <li><i class="fa-solid fa-location-arrow"></i> <strong>Live Geolocation:</strong> Continuous tracking stream to the server[cite: 134].</li>
+                        <li><i class="fa-solid fa-sync"></i> <strong>Background Sync:</strong> Auto-queues alerts if signal drops[cite: 181].</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h3>Responder Dashboard [cite: 135]</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-map-marked-alt"></i> <strong>Map Visualization:</strong> Live mapping of active threats using Geolocation API[cite: 77].</li>
+                        <li><i class="fa-solid fa-user-lock"></i> <strong>Access Control:</strong> Authorized-only access to sensitive tracking data[cite: 189].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Conclusion & Impact</h2>
+            <p>SafeBand represents a practical and cost-effective safety solution aimed at reducing response times and improving situational awareness[cite: 34].</p>
+            <div class="highlight-box">
+                <h3>Primary Significance [cite: 79]</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> <strong>Individual Level:</strong> Discreet and rapid alerting during narrow intervention windows[cite: 80].</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Community Level:</strong> Tactical blueprint for data-driven policing for agencies like Amotekun[cite: 82, 83].</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Academic Level:</strong> Advances LAUTECH research from GSM hardware to modern web ecosystems[cite: 84, 114].</li>
+                </ul>
+            </div>
+            <h1 style="margin-top: 30px; font-size: 3rem;">THANK YOU!</h1>
+        </div>
+
+        <div class="controls">
+            <button class="nav-btn" onclick="move(-1)"><i class="fa-solid fa-chevron-left"></i> PREVIOUS</button>
+            <div class="slide-number" id="num">1 / 7</div>
+            <button class="nav-btn" onclick="move(1)">NEXT <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const num = document.getElementById('num');
+
+        function move(n) {
+            slides[current].classList.remove('active');
+            current = (current + n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            num.innerText = (current + 1) + " / " + slides.length;
+            // Scroll slide back to top when switching
+            slides[current].scrollTop = 0;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") move(1);
+            if (e.key === "ArrowLeft") move(-1);
+        });
+    </script>
+</body>
+</html>
